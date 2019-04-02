@@ -162,9 +162,9 @@ class TestPlateHandlers(TestHandlerBase):
              ['Identification of the Microbiomes for Cannabis Soils']])
 
         # compressed and normalized gdna plates
-        response = self.get(
-            '/plate_list?plate_type=%5B%22compressed+gDNA%22%2C+%22'
-            'normalized+gDNA%22%5D')
+        response = self.get(('/plate_list?plate_type='
+                             '%5B%22compressed+gDNA%22%2C+%22'
+                             'normalized+gDNA%22%5D'))
         self.assertEqual(response.code, 200)
         obs = json_decode(response.body)
         self.assertCountEqual(obs.keys(), ['data'])
@@ -176,9 +176,9 @@ class TestPlateHandlers(TestHandlerBase):
               ['Identification of the Microbiomes for Cannabis Soils']],
              [25, 'Test normalized gDNA plates 1-4',
               ['Identification of the Microbiomes for Cannabis Soils']]])
-        response = self.get(
-            '/plate_list?plate_type=%5B%22compressed+gDNA%22%2C+%22'
-            'normalized+gDNA%22%5D&only_quantified=true')
+        response = self.get(('/plate_list?plate_type=%5B%22'
+                             'compressed+gDNA%22%2C+%22'
+                             'normalized+gDNA%22%5D&only_quantified=true'))
         self.assertEqual(response.code, 200)
         obs = json_decode(response.body)
         self.assertCountEqual(obs.keys(), ['data'])
